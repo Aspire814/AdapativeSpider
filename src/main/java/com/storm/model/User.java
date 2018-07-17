@@ -3,13 +3,13 @@ package com.storm.model;
 public class User {
     private Integer id;
 
-    private String email;
-
     private String name;
+
+    private String password;
 
     private Integer age;
 
-    private String password;
+    private String email;
 
     public Integer getId() {
         return id;
@@ -17,14 +17,6 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
     }
 
     public String getName() {
@@ -35,6 +27,14 @@ public class User {
         this.name = name == null ? null : name.trim();
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
     public Integer getAge() {
         return age;
     }
@@ -43,11 +43,11 @@ public class User {
         this.age = age;
     }
 
-    public String getPassword() {
-        return password;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 }

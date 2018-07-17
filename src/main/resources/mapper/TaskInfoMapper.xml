@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.storm.mapper.TaskInfoMapper">
+  <resultMap id="BaseResultMap" type="com.storm.model.TaskInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="beanClass" jdbcType="VARCHAR" property="beanclass" />
+    <result column="methodName" jdbcType="VARCHAR" property="methodname" />
+    <result column="isConcurrent" jdbcType="VARCHAR" property="isconcurrent" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="updateBy" jdbcType="VARCHAR" property="updateby" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="jobStatus" jdbcType="VARCHAR" property="jobstatus" />
+    <result column="jobGroup" jdbcType="VARCHAR" property="jobgroup" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updatedate" />
+    <result column="createBy" jdbcType="VARCHAR" property="createby" />
+    <result column="jobName" jdbcType="VARCHAR" property="jobname" />
+    <result column="params" jdbcType="VARCHAR" property="params" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, beanClass, methodName, isConcurrent, description, updateBy, createDate, jobStatus, 
+    jobGroup, updateDate, createBy, jobName, params
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from qrtz_task_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from qrtz_task_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.storm.model.TaskInfo">
+    insert into qrtz_task_info (id, beanClass, methodName, 
+      isConcurrent, description, updateBy, 
+      createDate, jobStatus, jobGroup, 
+      updateDate, createBy, jobName, 
+      params)
+    values (#{id,jdbcType=BIGINT}, #{beanclass,jdbcType=VARCHAR}, #{methodname,jdbcType=VARCHAR}, 
+      #{isconcurrent,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{updateby,jdbcType=VARCHAR}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{jobstatus,jdbcType=VARCHAR}, #{jobgroup,jdbcType=VARCHAR}, 
+      #{updatedate,jdbcType=TIMESTAMP}, #{createby,jdbcType=VARCHAR}, #{jobname,jdbcType=VARCHAR}, 
+      #{params,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.storm.model.TaskInfo">
+    insert into qrtz_task_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="beanclass != null">
+        beanClass,
+      </if>
+      <if test="methodname != null">
+        methodName,
+      </if>
+      <if test="isconcurrent != null">
+        isConcurrent,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="updateby != null">
+        updateBy,
+      </if>
+      <if test="createdate != null">
+        createDate,
+      </if>
+      <if test="jobstatus != null">
+        jobStatus,
+      </if>
+      <if test="jobgroup != null">
+        jobGroup,
+      </if>
+      <if test="updatedate != null">
+        updateDate,
+      </if>
+      <if test="createby != null">
+        createBy,
+      </if>
+      <if test="jobname != null">
+        jobName,
+      </if>
+      <if test="params != null">
+        params,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="beanclass != null">
+        #{beanclass,jdbcType=VARCHAR},
+      </if>
+      <if test="methodname != null">
+        #{methodname,jdbcType=VARCHAR},
+      </if>
+      <if test="isconcurrent != null">
+        #{isconcurrent,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="updateby != null">
+        #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobstatus != null">
+        #{jobstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="jobgroup != null">
+        #{jobgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null">
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createby != null">
+        #{createby,jdbcType=VARCHAR},
+      </if>
+      <if test="jobname != null">
+        #{jobname,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null">
+        #{params,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.storm.model.TaskInfo">
+    update qrtz_task_info
+    <set>
+      <if test="beanclass != null">
+        beanClass = #{beanclass,jdbcType=VARCHAR},
+      </if>
+      <if test="methodname != null">
+        methodName = #{methodname,jdbcType=VARCHAR},
+      </if>
+      <if test="isconcurrent != null">
+        isConcurrent = #{isconcurrent,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="updateby != null">
+        updateBy = #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        createDate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobstatus != null">
+        jobStatus = #{jobstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="jobgroup != null">
+        jobGroup = #{jobgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null">
+        updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createby != null">
+        createBy = #{createby,jdbcType=VARCHAR},
+      </if>
+      <if test="jobname != null">
+        jobName = #{jobname,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null">
+        params = #{params,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.storm.model.TaskInfo">
+    update qrtz_task_info
+    set beanClass = #{beanclass,jdbcType=VARCHAR},
+      methodName = #{methodname,jdbcType=VARCHAR},
+      isConcurrent = #{isconcurrent,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      updateBy = #{updateby,jdbcType=VARCHAR},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      jobStatus = #{jobstatus,jdbcType=VARCHAR},
+      jobGroup = #{jobgroup,jdbcType=VARCHAR},
+      updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      createBy = #{createby,jdbcType=VARCHAR},
+      jobName = #{jobname,jdbcType=VARCHAR},
+      params = #{params,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

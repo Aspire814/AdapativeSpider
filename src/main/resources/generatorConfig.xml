@@ -4,7 +4,7 @@
  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
 	<classPathEntry
-		location="D:\maven_lib\mysql\mysql-connector-java\5.1.42\mysql-connector-java-5.1.42.jar" />
+		location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.42\mysql-connector-java-5.1.42.jar" />
 	<context id="myGenerator" targetRuntime="MyBatis3">
 		<property name="autoDelimitKeywords" value="true" />
 		<!--可以使用``包括字段名，避免字段名与sql保留字冲突报错 -->
@@ -37,7 +37,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		<!-- 需要生成的实体类对应的表名，多个实体类复制多份该配置即可 -->
-		<table tableName="user" domainObjectName="User"
+		<table tableName="name" domainObjectName="Name"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
