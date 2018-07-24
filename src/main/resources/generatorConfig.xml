@@ -16,8 +16,8 @@
 		</commentGenerator>
 		<!-- mysql数据库连接 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://127.0.0.1:3306/test" userId="root"
-			password="123456">
+			connectionURL="jdbc:mysql://182.61.25.239:3306/test" userId="root"
+			password="root">
 		</jdbcConnection>
 		<!-- 生成model实体类文件位置 -->
 		<javaModelGenerator targetPackage="com.storm.model"
