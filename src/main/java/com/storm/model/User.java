@@ -1,6 +1,12 @@
 package com.storm.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable{
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5386028923622897358L;
     private Integer id;
 
     private String name;
