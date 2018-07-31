@@ -13,20 +13,10 @@ import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.storm.model.User;
 
 public class TestMongo {
     @Autowired
     MongoTemplate mongoTemplate;
-
-    @Test
-    public void test() {
-        User user = new User();
-        user.setId(23);
-        user.setName("mongodb");
-        user.setPassword("123456");
-        mongoTemplate.save(user);
-    }
 
     @Test
     public void test2() {
