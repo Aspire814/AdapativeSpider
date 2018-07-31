@@ -12,10 +12,10 @@ public class LoggingUtil {
 	}
 	
 	public static void debug(String key,String message) {
-        logger.debug("["+key+" INFO "+"{ || "+ message + "}]");
+        logger.debug("["+key+" DEBUG "+"{ || "+ message + "}]");
     }
 	
 	public static void error(String key,String message) {
-        logger.error("["+key+" INFO "+"{ || "+ message + "}]");
+        logger.error("["+key+" ERROR "+"{ || "+ message + "}]");
     }
 }

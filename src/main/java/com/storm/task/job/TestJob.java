@@ -1,4 +1,4 @@
-package com.storm.task.framework.job;
+package com.storm.task.job;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
