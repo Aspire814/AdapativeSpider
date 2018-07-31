@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.storm.mapper.SysAuthorityMapper" >
+  <resultMap id="BaseResultMap" type="com.storm.model.SysAuthority" >
+    <id column="authority_id" property="authorityId" jdbcType="INTEGER" />
+    <result column="authority_code" property="authorityCode" jdbcType="VARCHAR" />
+    <result column="authority_name" property="authorityName" jdbcType="VARCHAR" />
+    <result column="authority_desc" property="authorityDesc" jdbcType="VARCHAR" />
+    <result column="authority_method" property="authorityMethod" jdbcType="VARCHAR" />
+    <result column="authority_type" property="authorityType" jdbcType="INTEGER" />
+    <result column="authority_url" property="authorityUrl" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_op_id" property="updateOpId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    authority_id, authority_code, authority_name, authority_desc, authority_type, `status`, 
+    create_time, update_time, update_op_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_authority
+    where authority_id = #{authorityId,jdbcType=INTEGER}
+  </select>
+  <select id="queryByOperatorId" parameterType="Integer" resultMap="BaseResultMap">
+    select * from sys_authority sa
+    	LEFT JOIN sys_role_authority sra ON sa.authority_id =sra.authority_id
+    	LEFT JOIN sys_role sr ON sra.role_id=sr.role_id
+    	LEFT JOIN sys_operator_role sor on sor.id=sr.role_id
+    	LEFT JOIN sys_operator so ON so.operator_id= sor.id
+    where so.operator_id=#{operator}
+  </select>
+  <select id="queryAll" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from sys_authority
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_authority
+    where authority_id = #{authorityId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.storm.model.SysAuthority" >
+    insert into sys_authority (authority_id, authority_code, authority_name, 
+      authority_desc, authority_type, `status`, 
+      create_time, update_time, update_op_id
+      )
+    values (#{authorityId,jdbcType=INTEGER}, #{authorityCode,jdbcType=VARCHAR}, #{authorityName,jdbcType=VARCHAR}, 
+      #{authorityDesc,jdbcType=VARCHAR}, #{authorityType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{updateOpId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.storm.model.SysAuthority" >
+    insert into sys_authority
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="authorityId != null" >
+        authority_id,
+      </if>
+      <if test="authorityCode != null" >
+        authority_code,
+      </if>
+      <if test="authorityName != null" >
+        authority_name,
+      </if>
+      <if test="authorityDesc != null" >
+        authority_desc,
+      </if>
+      <if test="authorityType != null" >
+        authority_type,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateOpId != null" >
+        update_op_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="authorityId != null" >
+        #{authorityId,jdbcType=INTEGER},
+      </if>
+      <if test="authorityCode != null" >
+        #{authorityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="authorityName != null" >
+        #{authorityName,jdbcType=VARCHAR},
+      </if>
+      <if test="authorityDesc != null" >
+        #{authorityDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="authorityType != null" >
+        #{authorityType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateOpId != null" >
+        #{updateOpId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.storm.model.SysAuthority" >
+    update sys_authority
+    <set >
+      <if test="authorityCode != null" >
+        authority_code = #{authorityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="authorityName != null" >
+        authority_name = #{authorityName,jdbcType=VARCHAR},
+      </if>
+      <if test="authorityDesc != null" >
+        authority_desc = #{authorityDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="authorityType != null" >
+        authority_type = #{authorityType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateOpId != null" >
+        update_op_id = #{updateOpId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where authority_id = #{authorityId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.storm.model.SysAuthority" >
+    update sys_authority
+    set authority_code = #{authorityCode,jdbcType=VARCHAR},
+      authority_name = #{authorityName,jdbcType=VARCHAR},
+      authority_desc = #{authorityDesc,jdbcType=VARCHAR},
+      authority_type = #{authorityType,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_op_id = #{updateOpId,jdbcType=INTEGER}
+    where authority_id = #{authorityId,jdbcType=INTEGER}
+  </update>
+</mapper>

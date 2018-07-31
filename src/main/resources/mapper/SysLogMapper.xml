@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.storm.mapper.SysLogMapper" >
+  <resultMap id="BaseResultMap" type="com.storm.model.SysLog" >
+    <id column="log_id" property="logId" jdbcType="INTEGER" />
+    <result column="log_type" property="logType" jdbcType="INTEGER" />
+    <result column="log_level" property="logLevel" jdbcType="INTEGER" />
+    <result column="log_title" property="logTitle" jdbcType="VARCHAR" />
+    <result column="log_content" property="logContent" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    log_id, log_type, log_level, log_title, log_content, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_log
+    where log_id = #{logId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_log
+    where log_id = #{logId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.storm.model.SysLog" >
+    insert into sys_log (log_id, log_type, log_level, 
+      log_title, log_content, create_time
+      )
+    values (#{logId,jdbcType=INTEGER}, #{logType,jdbcType=INTEGER}, #{logLevel,jdbcType=INTEGER}, 
+      #{logTitle,jdbcType=VARCHAR}, #{logContent,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.storm.model.SysLog" >
+    insert into sys_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        log_id,
+      </if>
+      <if test="logType != null" >
+        log_type,
+      </if>
+      <if test="logLevel != null" >
+        log_level,
+      </if>
+      <if test="logTitle != null" >
+        log_title,
+      </if>
+      <if test="logContent != null" >
+        log_content,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        #{logId,jdbcType=INTEGER},
+      </if>
+      <if test="logType != null" >
+        #{logType,jdbcType=INTEGER},
+      </if>
+      <if test="logLevel != null" >
+        #{logLevel,jdbcType=INTEGER},
+      </if>
+      <if test="logTitle != null" >
+        #{logTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="logContent != null" >
+        #{logContent,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.storm.model.SysLog" >
+    update sys_log
+    <set >
+      <if test="logType != null" >
+        log_type = #{logType,jdbcType=INTEGER},
+      </if>
+      <if test="logLevel != null" >
+        log_level = #{logLevel,jdbcType=INTEGER},
+      </if>
+      <if test="logTitle != null" >
+        log_title = #{logTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="logContent != null" >
+        log_content = #{logContent,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.storm.model.SysLog" >
+    update sys_log
+    set log_type = #{logType,jdbcType=INTEGER},
+      log_level = #{logLevel,jdbcType=INTEGER},
+      log_title = #{logTitle,jdbcType=VARCHAR},
+      log_content = #{logContent,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+</mapper>
