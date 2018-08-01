@@ -28,15 +28,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .csrf().disable()
             .authorizeRequests()
-            .antMatchers("/pages/index.html").permitAll()
             .antMatchers("/index").permitAll()
+            .antMatchers("/register").permitAll()
             .antMatchers("/login").permitAll()
             .antMatchers("/logout").permitAll()
-            .antMatchers("/static/images/**").permitAll()
-            .antMatchers("/static/js/**").permitAll()
-            .antMatchers("/static/css/**").permitAll()
-            .antMatchers("/static/fonts/**").permitAll()
-            .antMatchers("/static/favicon.ico").permitAll()
+            .antMatchers("/js/**").permitAll()
+            .antMatchers("/css/**").permitAll()
             .antMatchers("/").permitAll()
             .anyRequest().authenticated()
             .and()
@@ -47,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .invalidateHttpSession(true)
             .clearAuthentication(true)
             .and()
-            .formLogin();
+            .formLogin().loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/admin");
     }
 
     @Override
