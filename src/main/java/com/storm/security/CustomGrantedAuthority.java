@@ -35,7 +35,7 @@ public class CustomGrantedAuthority implements GrantedAuthority {
         this.authorityMethod = authorityMethod;
         this.authorityUrl = authorityUrl;
     }
-    //重写
+    @Override
     public String getAuthority() {
         return authorityUrl+ ";"+authorityMethod;
     }

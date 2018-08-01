@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Service
 public class UrlMetadataSourceService implements FilterInvocationSecurityMetadataSource {
-
+	@Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
         final HttpServletRequest request = ((FilterInvocation) object).getRequest();
         Set<ConfigAttribute> allAttributes = new HashSet<ConfigAttribute>();
@@ -20,11 +20,11 @@ public class UrlMetadataSourceService implements FilterInvocationSecurityMetadat
         allAttributes.add(configAttribute);
         return allAttributes;
     }
-
+	@Override
     public Collection<ConfigAttribute> getAllConfigAttributes() {
         return null;
     }
-
+	@Override
     public boolean supports(Class<?> clazz) {
         return true;
     }

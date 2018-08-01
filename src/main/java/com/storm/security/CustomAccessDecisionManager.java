@@ -15,12 +15,14 @@ import java.util.Collection;
 
 @Service
 public class CustomAccessDecisionManager implements AccessDecisionManager {
+	@Override
     public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes) throws AccessDeniedException, InsufficientAuthenticationException {
         HttpServletRequest request = ((FilterInvocation) object).getHttpRequest();
         String url, method;
         if ("anonymousUser".equals(authentication.getPrincipal())
                 || matchers("/js/**", request)
                 || matchers("/css/**", request)
+                || matchers("/fonts/**", request)
                 || matchers("/", request)
                 || matchers("/index", request)
                 || matchers("/login", request)
@@ -40,17 +42,16 @@ public class CustomAccessDecisionManager implements AccessDecisionManager {
                 }
             }
         }
-        throw new AccessDeniedException("no right");
+        throw new AccessDeniedException("无权限访问！");
     }
-
+	@Override
     public boolean supports(ConfigAttribute attribute) {
         return true;
     }
-    
+	@Override
     public boolean supports(Class<?> clazz) {
         return true;
     }
-
     private boolean matchers(String url, HttpServletRequest request) {
         AntPathRequestMatcher matcher = new AntPathRequestMatcher(url);
         if (matcher.matches(request)) {
