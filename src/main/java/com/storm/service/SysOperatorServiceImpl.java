@@ -11,7 +11,7 @@ import com.storm.model.SysOperator;
 public class SysOperatorServiceImpl implements SysOperatorService {
     @Resource
     private SysOperatorDao sysOperatorDao;
-
+    @Override
     public SysOperator selectByPrimarykey(Integer operatorId) {
         SysOperator user = null;
         if(sysOperatorDao != null){

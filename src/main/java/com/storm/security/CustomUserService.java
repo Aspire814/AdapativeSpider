@@ -21,7 +21,7 @@ public class CustomUserService implements UserDetailsService {
     private SysAuthorityDao sysAuthorityDao;
     @Autowired
     private SysOperatorDao sysOperatorDao;
-    
+    @Override
     public UserDetails loadUserByUsername(String userName) { //重写loadUserByUsername 方法获得 userdetails 类型用户
         SysOperator sysOperator = sysOperatorDao.getSysOperatorByName(userName);
         if (sysOperator != null) {
