@@ -21,7 +21,6 @@ public class SysOperatorController {
 
     @RequestMapping("/admin")
     public String admin(){
-        System.out.println(2/0);
         return "admin";
     }
 

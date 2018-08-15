@@ -22,6 +22,7 @@ public class CustomAccessDecisionManager implements AccessDecisionManager {
         if ("anonymousUser".equals(authentication.getPrincipal())
                 || matchers("/js/**", request)
                 || matchers("/css/**", request)
+                || matchers("/img/**", request)
                 || matchers("/fonts/**", request)
                 || matchers("/", request)
                 || matchers("/index", request)
