@@ -24,6 +24,7 @@ public class CustomAccessDecisionManager implements AccessDecisionManager {
                 || matchers("/css/**", request)
                 || matchers("/img/**", request)
                 || matchers("/fonts/**", request)
+                || matchers("/AdminLTE-2.4.1/**", request)
                 || matchers("/", request)
                 || matchers("/index", request)
                 || matchers("/login", request)

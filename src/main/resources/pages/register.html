@@ -1,23 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdapativeSpider | 注册</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="/css/AdminLTE.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="/css/blue.css">
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<#include "/public.html">
+<title>AdapativeSpider | 注册</title>
+<script type="text/javascript">
+  	//注册表单提交
+	$(function() {
+		$("#doregister").click(function() {
+			var data ={};
+			var operatorName = $("#operatorName").val();
+			var realName = $("#realName").val();
+			var pwd = $("#pwd").val();
+			var pwdRet = $("#pwdRet").val();
+			if(pwd != pwdRet){
+				alert("密码不一致");
+				return;
+			}
+			data.operatorName = operatorName;
+			data.realName = realName;
+			data.password = pwd;
+			$.ajax({
+				url : "/doregister",
+				data : data,
+				dataType : "json",
+				error : function(data) {
+					alert(data);
+				},
+				success : function(data) {
+					alert(data);
+				}
+			});
+		})
+	})
+</script>
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -26,18 +41,17 @@
   </div>
   <div class="login-box-body">
     <p class="login-box-msg">注册</p>
-<form action="/register" method="post">
       <div class="form-group has-feedback">
-        <input name="operatorName" type="text" class="form-control" placeholder="用户名">
+        <input id="operatorName" name="operatorName" type="text" class="form-control" placeholder="用户名">
       </div>
       <div class="form-group has-feedback">
-        <input name="realName"type="text" class="form-control" placeholder="真实姓名">
+        <input id="realName" name="realName"type="text" class="form-control" placeholder="真实姓名">
       </div>
       <div class="form-group has-feedback">
-        <input name="password" type="password" class="form-control" placeholder="密码">
+        <input id="pwd" name="password" type="password" class="form-control" placeholder="密码">
       </div>
       <div class="form-group has-feedback">
-        <input name="password" type="password" class="form-control" placeholder="确认密码">
+        <input id="pwdRet" name="password" type="password" class="form-control" placeholder="确认密码">
       </div>
       <div class="row">
         <div class="col-xs-8">
@@ -48,29 +62,13 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">提交</button>
+          <button id="doregister" class="btn btn-primary btn-block btn-flat">提交</button>
         </div>
         <!-- /.col -->
       </div>
-    </form>
   </div>
   <!-- /.login-box-body -->
 </div>
 <!-- /.login-box -->
-<!-- jQuery 3 -->
-<script src="/js/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="/js/bootstrap.min.js"></script>
-<!-- iCheck -->
-<script src="/js/icheck.min.js"></script>
-<script>
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' /* optional */
-    });
-  });
-</script>
 </body>
 </html>
